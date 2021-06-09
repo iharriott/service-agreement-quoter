@@ -1,0 +1,61 @@
+{
+  "name": "service-agreement-quoter",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "lint": "tsc --noEmit && eslint . --ext js,ts,json --quiet --fix",
+    "lint:js": "eslint . --ext .js",
+    "lint:js:fix": "npm run lint:js -- --fix",
+    "test:related": "jest --bail --passWithNoTests ",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged . && jest --bail --passWithNoTests ."
+    }
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~12.0.2",
+    "@angular/cdk": "^11.2.13",
+    "@angular/common": "~12.0.2",
+    "@angular/compiler": "~12.0.2",
+    "@angular/core": "~12.0.2",
+    "@angular/forms": "~12.0.2",
+    "@angular/material": "^11.2.13",
+    "@angular/platform-browser": "~12.0.2",
+    "@angular/platform-browser-dynamic": "~12.0.2",
+    "@angular/router": "~12.0.2",
+    "rxjs": "~6.6.0",
+    "tslib": "^2.1.0",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~12.0.2",
+    "@angular/cli": "~12.0.2",
+    "@angular/compiler-cli": "~12.0.2",
+    "@types/jasmine": "~3.6.0",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^12.11.1",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^4.2.3",
+    "jasmine-core": "~3.7.0",
+    "jest": "^27.0.3",
+    "jest-preset-angular": "^9.0.1",
+    "karma-coverage": "~2.0.3",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0",
+    "prettier-eslint": "^12.0.0",
+    "typescript": "~4.2.3"
+  },
+  "lint-staged": {
+    "*.{js,ts,json}": "eslint --fix"
+  }
+}
