@@ -1,38 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MainNavComponent } from './main-nav/main-nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CredentialsInterceptor } from './interceptors/credentials.interceptor';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { MaterialModule } from './material/material.module';
+import { MainNavComponent } from './components/lazy/main-nav/main-nav.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, MainNavComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    LayoutModule,
+    AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    MaterialModule
+    SharedModule.forRoot()
   ],
   entryComponents: [],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: CredentialsInterceptor,
-      multi: true
-    }
-  ],
+  providers: [], // include service for app initializer
   bootstrap: [AppComponent]
 })
 export class AppModule {}
