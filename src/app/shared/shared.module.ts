@@ -2,7 +2,7 @@ import {
   ModuleWithProviders,
   NgModule,
   Optional,
-  SkipSelf
+  SkipSelf,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedOthersModule } from './others/shared-others.module';
@@ -11,7 +11,7 @@ import { SharedServicesModule } from './services/shared-services.module';
 @NgModule({
   imports: [CommonModule, SharedOthersModule, SharedServicesModule],
   exports: [SharedOthersModule],
-  declarations: []
+  declarations: [],
 })
 export class SharedModule {
   constructor(@Optional() @SkipSelf() parentModule: SharedModule) {
@@ -23,16 +23,16 @@ export class SharedModule {
   }
 
   //Should only be used once in the root component
-  static forRoot(): ModuleWithProviders<any> {
+  static forRoot(): ModuleWithProviders<unknown> {
     return {
-      ngModule: SharedModule
+      ngModule: SharedModule,
     };
   }
 
   // Should be used in all component modules
-  static forChild(): ModuleWithProviders<any> {
+  static forChild(): ModuleWithProviders<unknown> {
     return {
-      ngModule: SharedOthersModule
+      ngModule: SharedOthersModule,
     };
   }
 }

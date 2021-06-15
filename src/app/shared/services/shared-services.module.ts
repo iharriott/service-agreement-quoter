@@ -1,6 +1,6 @@
 import {
   AppHttpRequestInterceptor,
-  AppHttpResponseInterceptor
+  AppHttpResponseInterceptor,
 } from './app-services/app-http-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -12,13 +12,13 @@ import { NgModule } from '@angular/core';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AppHttpRequestInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AppHttpResponseInterceptor,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class SharedServicesModule {}

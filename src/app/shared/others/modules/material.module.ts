@@ -5,6 +5,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  exports: [MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule]
+  exports: [MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule],
 })
 export class MaterialsModule {}

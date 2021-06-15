@@ -6,22 +6,22 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "lint": "tsc --noEmit && eslint . --ext js,ts,json --quiet --fix",
-    "lint:js": "eslint . --ext .js",
-    "lint:js:fix": "npm run lint:js -- --fix",
-    "test:related": "jest --bail --passWithNoTests ",
-    "prepare":"huskyinstall"
+    "test": "jest --passWithNoTests",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "test:related": "jest --bail --passWithNoTests "
   },
-  "husky":{
-    "hooks":{
-      "pre-commit":"lint-staged.&&jest--bail--passWithNoTests."
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged.&&jest --bail --passWithNoTests."
     }
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/core": "^12.0.4",
+    "@angular-devkit/schematics": "^12.0.4",
     "@angular/animations": "~12.0.2",
-    "@angular/cdk": "^11.2.13",
+    "@angular/cdk": "^12.0.4",
     "@angular/common": "~12.0.2",
     "@angular/compiler": "~12.0.2",
     "@angular/core": "~12.0.2",
@@ -35,14 +35,19 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.0.2",
-    "@angular/cli": "~12.0.2",
+    "@angular-devkit/build-angular": "^12.0.4",
+    "@angular-eslint/builder": "12.1.0",
+    "@angular-eslint/eslint-plugin": "12.1.0",
+    "@angular-eslint/eslint-plugin-template": "12.1.0",
+    "@angular-eslint/schematics": "12.1.0",
+    "@angular-eslint/template-parser": "12.1.0",
     "@angular/compiler-cli": "~12.0.2",
     "@types/jasmine": "~3.6.0",
     "@types/jest": "^26.0.23",
     "@types/node": "^12.11.1",
-    "@typescript-eslint/eslint-plugin": "^4.26.0",
-    "eslint": "^7.27.0",
+    "@typescript-eslint/eslint-plugin": "4.23.0",
+    "@typescript-eslint/parser": "4.23.0",
+    "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "jasmine-core": "~3.7.0",

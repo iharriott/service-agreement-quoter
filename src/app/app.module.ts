@@ -14,10 +14,10 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
   ],
   entryComponents: [],
   providers: [], // include service for app initializer
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -10,10 +10,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialsModule,
     LayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [MaterialsModule, LayoutModule, FormsModule, ReactiveFormsModule],
   declarations: [],
-  providers: []
+  providers: [],
 })
 export class SharedOthersModule {}

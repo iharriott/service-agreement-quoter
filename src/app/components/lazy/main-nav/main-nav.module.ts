@@ -6,6 +6,6 @@ import { MainNavComponent } from './main-nav.component';
 @NgModule({
   declarations: [MainNavComponent],
   imports: [CommonModule, SharedModule.forChild()],
-  providers: []
+  providers: [],
 })
 export class MainNavModule {}
