@@ -23,14 +23,14 @@ export class SharedModule {
   }
 
   //Should only be used once in the root component
-  static forRoot(): ModuleWithProviders<unknown> {
+  static forRoot(): ModuleWithProviders<SharedModule> {
     return {
       ngModule: SharedModule,
     };
   }
 
   // Should be used in all component modules
-  static forChild(): ModuleWithProviders<unknown> {
+  static forChild(): ModuleWithProviders<SharedOthersModule> {
     return {
       ngModule: SharedOthersModule,
     };
