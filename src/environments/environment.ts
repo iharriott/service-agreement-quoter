@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  environmentName: 'DEV',
+  baseApiUrl: 'https://local',
 };
 
 /*
