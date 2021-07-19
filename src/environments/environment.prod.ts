@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
   environmentName: 'PROD',
-  baseApiUrl: 'https://local',
+  saqBridgev2Url: 'https://local',
+  cookieName: 'uptakecajwt',
 };

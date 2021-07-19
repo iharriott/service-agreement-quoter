@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
+import { QuoteListResolverData } from './models/quote-list.model';
 
 @Component({
   selector: 'app-quote-list',
@@ -15,11 +16,14 @@ import { Subject } from 'rxjs';
 })
 export class QuoteListComponent implements OnInit, OnDestroy {
   private destroy$: Subject<boolean> = new Subject();
+  data: QuoteListResolverData;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {
+    this.data = this.route.snapshot.data['pageData'];
+  }
 
   ngOnInit(): void {
-    let data = this.route.snapshot.data['pageData'];
+    console.log(this.data);
   }
 
   ngOnDestroy(): void {

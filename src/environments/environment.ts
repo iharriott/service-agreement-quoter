@@ -1,11 +1,14 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
+export const BRIDGE_HOST_URL =
+  'http://localhost:4000/midtier/clapi-bridge/v2/api/';
 export const environment = {
   production: false,
   environmentName: 'DEV',
-  baseApiUrl: 'https://local',
+  QUOTE_LIST_EP: BRIDGE_HOST_URL + 'saq/quotes/quotes/',
+  DCF_EP: BRIDGE_HOST_URL + 'arcdb/dcf-component/dcf-component-list/',
+  COOKIE_NAME: 'uptakecajwt',
 };
 
 /*

@@ -4,7 +4,6 @@ import { QuoteListRoutingModule } from './quote-list-routing.module';
 import { QuoteListComponent } from './quote-list.component';
 import { QuoteListService } from './services/quote-list.service';
 import { QuoteListResolverService } from './resolver/quote-list-resolver.service';
-
 @NgModule({
   declarations: [QuoteListComponent],
   providers: [QuoteListService, QuoteListResolverService],
