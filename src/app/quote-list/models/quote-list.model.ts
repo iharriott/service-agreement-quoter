@@ -1,4 +1,5 @@
 import { DCFComponentGetComponentForViewResult } from 'src/app/shared/models/dcf.model';
+import { DataDefinition } from '../../../../../angular-shared-components/dist/shared-components-lib/lib/shared-grid/atom-grid/atom-grid-data.interface';
 
 export interface QuotesGetChangedListForViewDetail {
   changeId: number;
@@ -72,5 +73,5 @@ export interface QuotesGetQuotesListForViewParameters {
 
 export interface QuoteListResolverData {
   quotesGetQuotesForViewResult?: QuotesGetQuotesForViewResult;
-  dcfComponentGetComponentForViewResult?: DCFComponentGetComponentForViewResult;
+  dcfComponentGetComponentForViewResult?: DataDefinition;
 }

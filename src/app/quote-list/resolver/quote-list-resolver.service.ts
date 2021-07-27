@@ -7,6 +7,7 @@ import {
   DCFQueryParams,
 } from 'src/app/shared/models/dcf.model';
 import { DcfService } from 'src/app/shared/services/dcf-services/dcf.service';
+import { DataDefinition } from '../../../../../angular-shared-components/dist/shared-components-lib/lib/shared-grid/atom-grid/atom-grid-data.interface';
 import {
   QuoteListResolverData,
   QuotesGetQuotesForViewResult,
@@ -33,7 +34,7 @@ export class QuoteListResolverService
       showFilter: 2,
       //userId: 2737,
     };
-    const dcfParams: DCFQueryParams = { componentId: 12 };
+    const dcfParams: DCFQueryParams = { componentId: 3043 };
     return forkJoin([
       this.quoteListService.getQuoteList(quotesData),
       this.dcfService.getDcfList(dcfParams),
@@ -41,7 +42,8 @@ export class QuoteListResolverService
       map(
         ([result1, result2]: [
           QuotesGetQuotesForViewResult,
-          DCFComponentGetComponentForViewResult
+          //DCFComponentGetComponentForViewResult
+          DataDefinition
         ]) => {
           return {
             quotesGetQuotesForViewResult: result1,

@@ -6,7 +6,7 @@ export const BRIDGE_HOST_URL =
 export const environment = {
   production: false,
   environmentName: 'DEV',
-  QUOTE_LIST_EP: BRIDGE_HOST_URL + 'saq/quotes/quotes/',
+  QUOTE_LIST_EP: BRIDGE_HOST_URL + 'saq/quotes/quotelist/',
   DCF_EP: BRIDGE_HOST_URL + 'arcdb/dcf-component/dcf-component-list/',
   COOKIE_NAME: 'uptakecajwt',
 };
