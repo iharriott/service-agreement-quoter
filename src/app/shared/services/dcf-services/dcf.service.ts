@@ -2,10 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
-import {
-  DCFComponentGetComponentForViewResult,
-  DCFQueryParams,
-} from '../../models/dcf.model';
+import { DCFQueryParams } from '../../models/dcf.model';
 import { DataDefinition } from '../../../../../../angular-shared-components/dist/shared-components-lib/lib/shared-grid/atom-grid/atom-grid-data.interface';
 
 @Injectable()

@@ -3,7 +3,6 @@ import { Resolve } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {
-  DCFComponentGetComponentForViewResult,
   DCFQueryParams,
 } from 'src/app/shared/models/dcf.model';
 import { DcfService } from 'src/app/shared/services/dcf-services/dcf.service';

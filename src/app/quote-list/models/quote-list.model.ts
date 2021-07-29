@@ -1,5 +1,9 @@
-import { DCFComponentGetComponentForViewResult } from 'src/app/shared/models/dcf.model';
 import { DataDefinition } from '../../../../../angular-shared-components/dist/shared-components-lib/lib/shared-grid/atom-grid/atom-grid-data.interface';
+import {
+  SharedFormActionsInputConfig,
+  SharedFormActionsOutputConfig,
+} from '../../../../../angular-shared-components/dist/shared-components-lib/lib/shared-form/shared-form-actions/shared-form-actions.model';
+import { Subject } from 'rxjs';
 
 export interface QuotesGetChangedListForViewDetail {
   changeId: number;
@@ -74,4 +78,10 @@ export interface QuotesGetQuotesListForViewParameters {
 export interface QuoteListResolverData {
   quotesGetQuotesForViewResult?: QuotesGetQuotesForViewResult;
   dcfComponentGetComponentForViewResult?: DataDefinition;
+}
+
+export interface SharedFormsConfig {
+  compConfig: SharedFormActionsInputConfig;
+  inputChange: Subject<SharedFormActionsInputConfig>;
+  compOutput: (event: SharedFormActionsOutputConfig) => void;
 }
