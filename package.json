@@ -12,7 +12,7 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "test:related": "jest --bail --passWithNoTests ",
-    "test-build-tc": "npm install --loglevel=error && ng build",
+    "test-build-tc": "npm ci --loglevel=error && ng build",
     "test-lint-tc": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "test-unit-tc": "jest --coverage --no-colors"
   },
