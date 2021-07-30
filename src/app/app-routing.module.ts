@@ -5,8 +5,13 @@ const routes: Routes = [
   {
     path: 'quote-list',
     loadChildren: () =>
-      import('./quote-list/quote-list.module').then((m) => m.QuoteListModule),
+      import('./components/lazy/quote-list/quote-list.module').then(
+        (m) => m.QuoteListModule
+      ),
   },
+  { path: 'error', redirectTo: 'error', pathMatch: 'full' },
+  { path: '', redirectTo: 'quote-list', pathMatch: 'full' },
+  { path: '**', redirectTo: 'error', pathMatch: 'full' },
 ];
 
 @NgModule({

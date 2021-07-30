@@ -1,4 +1,4 @@
-export interface AppData {
+export interface MockData {
   firstName: string;
   lastName: string;
   organization: string;
@@ -11,7 +11,7 @@ export interface AppData {
   buttonToggle: string | null;
 }
 
-export const getData: AppData = {
+export const getData: MockData = {
   firstName: 'joe',
   lastName: 'campbell',
   organization: 'Uptake',

@@ -1,9 +1,9 @@
-import { DataDefinition } from '../../../../../angular-shared-components/dist/shared-components-lib/lib/shared-grid/atom-grid/atom-grid-data.interface';
+import { Subject } from 'rxjs';
+import { DataDefinition } from 'shared-components-lib/lib/shared-grid/atom-grid/atom-grid-data.interface';
 import {
   SharedFormActionsInputConfig,
   SharedFormActionsOutputConfig,
-} from '../../../../../angular-shared-components/dist/shared-components-lib/lib/shared-form/shared-form-actions/shared-form-actions.model';
-import { Subject } from 'rxjs';
+} from 'shared-components-lib/lib/shared-form/shared-form-actions/shared-form-actions.model';
 
 export interface QuotesGetChangedListForViewDetail {
   changeId: number;
