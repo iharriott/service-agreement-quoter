@@ -9,6 +9,7 @@ export const environment = {
   QUOTE_LIST_EP: BRIDGE_HOST_URL + 'saq/quotes/quotelist/',
   DCF_EP: BRIDGE_HOST_URL + 'arcdb/dcf-component/dcf-component-list/',
   COOKIE_NAME: 'uptakecajwt',
+  QUOTE_REPORT_EP: BRIDGE_HOST_URL + 'saq/report/workflow/summary/owner/list',
 };
 
 /*
