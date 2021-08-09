@@ -6,15 +6,15 @@ import {
   SharedComponentsLibModule,
   SharedFormActionsModule,
 } from 'shared-components-lib';
-import { QuoteReportWorkflowService } from './services/quote-report-workflow.service';
-import { QuoteReportsWorkflowByOwnerResolverService } from './resolver/quote-reports-workflow-by-owner-resolver.service';
+import { QuoteReportWorkflowByOwnerService } from './quote-report-workflow-by-owner.service';
+import { QuoteReportsWorkflowByOwnerResolver } from './quote-reports-workflow-by-owner-resolver';
 
 const routes: Routes = [
   {
     path: '**',
     component: QuoteReportsWorkflowByOwnerComponent,
     resolve: {
-      pageData: QuoteReportsWorkflowByOwnerResolverService,
+      pageData: QuoteReportsWorkflowByOwnerResolver,
     },
   },
 ];
@@ -28,8 +28,8 @@ const routes: Routes = [
     SharedFormActionsModule,
   ],
   providers: [
-    QuoteReportWorkflowService,
-    QuoteReportsWorkflowByOwnerResolverService,
+    QuoteReportWorkflowByOwnerService,
+    QuoteReportsWorkflowByOwnerResolver,
   ],
 })
 export class QuoteReportsWorkflowByOwnerModule {}

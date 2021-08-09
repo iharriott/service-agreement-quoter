@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import {
+  QuoteListFilters,
   QuotesGetQuotesForViewResult,
   SharedFormsConfig,
 } from './quote-list.model';
@@ -16,8 +17,8 @@ import {
   SharedFormActionsOutputConfig,
 } from 'shared-components-lib/lib/shared-form/shared-form-actions/shared-form-actions.model';
 import { QuoteListService } from './quote-list.service';
-import { AppConfig, MockData } from './mock.data';
 import { FieldConfig } from 'shared-components-lib/lib/shared-form/shared/others/model/field.model';
+import { FormField } from '../../../shared/models/form-field.model';
 
 @Component({
   selector: 'app-quote-list',
@@ -89,7 +90,18 @@ export class QuoteListComponent implements OnInit, OnDestroy {
   private handleSharedFormsOutputChange(
     event: SharedFormActionsOutputConfig
   ): void {
-    this.outputData = event.data;
+    this.listData$.next({ isLoaded: false });
+    this.quoteListService.filterData = event.data[0];
+    this.quoteListService.getQuoteList(event.data[0]).subscribe((data) => {
+      debugger;
+      this.tableData = data;
+      this.listData$.next({
+        isLoaded: true,
+        payload: this.tableData?.quotesList,
+      });
+    });
+
+    // this.outputData = event.data;
   }
 
   /**
@@ -98,38 +110,11 @@ export class QuoteListComponent implements OnInit, OnDestroy {
    * @private
    */
   private notifySharedFormsComponent(): void {
-    const data: MockData | undefined = this.quoteListService.filterData;
-    const config: AppConfig[] | undefined = this.quoteListService.filterConfig;
+    const data: QuoteListFilters | undefined = this.quoteListService.filterData;
+    const config: FormField[] | undefined = this.quoteListService.filterConfig;
     if (data && config) {
-      const fieldConfigs: FieldConfig[] = [];
-      Object.keys(data).forEach((key: string) => {
-        const appConfig: AppConfig | undefined = config.find(
-          (cfg: AppConfig) => cfg.fieldName == key
-        );
-        if (appConfig) {
-          const messages: any = {
-            firstName: {
-              required: 'This is a required field',
-              maxlength: 'Max value allowed is 2',
-            },
-          };
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          const fieldConfig: FieldConfig = {
-            key: appConfig.fieldName,
-            label: appConfig.fieldLabel,
-            sequence: appConfig.displayOrder,
-            fieldType: appConfig.fieldType,
-            tooltip: appConfig.tooltip,
-            info: appConfig.info,
-            hint: appConfig.hint,
-            readonly: appConfig.readOnly,
-            validationMessages: messages,
-            options: appConfig.options,
-          };
-          fieldConfigs.push(fieldConfig);
-        }
-      });
+      const fieldConfigs: FieldConfig[] =
+        this.quoteListService.transformToFormsConfig(data, config);
       if (this.sharedFilterConfig) {
         this.sharedFilterConfig.compConfig.options = {
           isShow: true,
@@ -152,7 +137,6 @@ export class QuoteListComponent implements OnInit, OnDestroy {
         };
         // FYI: This is how you need to update the child component
         // this.sharedFilterConfig?.inputChange.next(this.sharedFilterConfig?.compConfig);
-        //console.log('testing filter app com');
       }
     }
   }

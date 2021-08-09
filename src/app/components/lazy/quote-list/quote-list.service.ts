@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
+  initialFilters,
+  QuoteListFilters,
   QuotesGetQuotesForViewResult,
   QuotesGetQuotesListForViewParameters,
 } from './quote-list.model';
@@ -10,17 +12,23 @@ import { DCFQueryParams } from '../../../shared/models/dcf.model';
 import { DataDefinition } from 'shared-components-lib/lib/shared-grid/atom-grid/atom-grid-data.interface';
 import { DcfService } from '../../../shared/services/dcf-services/dcf.service';
 import { take } from 'rxjs/operators';
-import { AppConfig, getConfig, getData, MockData } from './mock.data';
+import { FormService } from 'src/app/shared/services/form.service';
+import { FieldConfig } from 'shared-components-lib/lib/shared-form/shared/others/model/field.model';
+import { FormField, getConfig } from '../../../shared/models/form-field.model';
 
 @Injectable()
 export class QuoteListService {
   quotesData: QuotesGetQuotesForViewResult | undefined;
   dataDefinition: DataDefinition | undefined;
 
-  filterConfig: AppConfig[] | undefined;
-  filterData: MockData | undefined;
+  filterConfig: FormField[] | undefined;
+  filterData: QuoteListFilters | undefined;
 
-  constructor(private http: HttpClient, private dcfService: DcfService) {}
+  constructor(
+    private http: HttpClient,
+    private dcfService: DcfService,
+    private formService: FormService
+  ) {}
 
   /**
    *  Function to get component data
@@ -35,7 +43,6 @@ export class QuoteListService {
       lastChangedId: 2018,
       ownerId: 2737,
       showFilter: 2,
-      //userId: 2737,
     };
 
     const dcfParams: DCFQueryParams = { componentId: 3043 };
@@ -44,19 +51,22 @@ export class QuoteListService {
       forkJoin([
         this.getQuoteList(quotesData),
         this.dcfService.getDcfList(dcfParams),
+        this.formService.getConfig('saqQuoteListFilters'),
         this.getFilterConfig(),
         this.getFilterData(),
       ])
         .pipe(take(1))
         .subscribe(
-          ([gridData, gridDefinition]: [
+          ([gridData, gridDefinition, formConfiguration]: [
             QuotesGetQuotesForViewResult,
             DataDefinition,
+            any[],
             boolean,
             boolean
           ]) => {
             this.quotesData = gridData;
             this.dataDefinition = gridDefinition;
+            this.filterConfig = formConfiguration;
             observer.next(true);
             observer.complete();
           }
@@ -91,9 +101,18 @@ export class QuoteListService {
    */
   getFilterData(): Observable<boolean> {
     return new Observable<boolean>((observer: Observer<boolean>) => {
-      this.filterData = getData;
+      this.filterData = initialFilters;
       observer.next(true);
       observer.complete();
     });
+  }
+
+  /**
+   * Function to transform global config to Forms config
+   * @param data
+   * @param configs
+   */
+  transformToFormsConfig(data: any, configs: FormField[]): FieldConfig[] {
+    return this.formService.transformToConfig(data, configs);
   }
 }

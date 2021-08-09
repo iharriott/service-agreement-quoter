@@ -85,3 +85,23 @@ export interface SharedFormsConfig {
   inputChange: Subject<SharedFormActionsInputConfig>;
   compOutput: (event: SharedFormActionsOutputConfig) => void;
 }
+
+export interface QuoteListFilters {
+  ownerId: number | null;
+  changedById: string | null;
+  lastChangedId: string | null; // year
+  creatorId: number | null;
+  divisionId: string | null;
+  bmStatusId: number;
+  showFilter: number;
+}
+
+export const initialFilters: QuoteListFilters = {
+  ownerId: null,
+  changedById: null,
+  lastChangedId: null,
+  creatorId: null,
+  divisionId: '%',
+  bmStatusId: 255,
+  showFilter: 2,
+};

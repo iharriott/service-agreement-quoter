@@ -5,6 +5,7 @@ import {
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { DcfService } from './dcf-services/dcf.service';
+import { FormService } from './form.service';
 
 @NgModule({
   imports: [],
@@ -21,6 +22,7 @@ import { DcfService } from './dcf-services/dcf.service';
       multi: true,
     },
     DcfService,
+    FormService,
   ],
 })
 export class SharedServicesModule {}

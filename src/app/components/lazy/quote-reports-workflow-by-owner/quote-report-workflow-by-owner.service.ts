@@ -1,29 +1,31 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, Observer } from 'rxjs';
-import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
+import { take } from 'rxjs/operators';
 import { DataDefinition } from 'shared-components-lib/lib/shared-grid/atom-grid/atom-grid-data.interface';
 import { DCFQueryParams } from '../../../shared/models/dcf.model';
-
 import { DcfService } from '../../../shared/services/dcf-services/dcf.service';
-import { environment } from '../../../../environments/environment';
-//import { AppConfig, getConfig } from '../quote-list/mock.data';
 
+import { environment } from '../../../../environments/environment';
+//import { AppConfig } from '../quote-list/mock.data';
 import {
+  OwnerSummaryRoot,
   QuoteReportsFilter,
   QuoteReportWorkflowParams,
-} from '../quote-reports-workflow-by-owner/quote-reports-workflow-by-owner.model';
-import { StoreSummaryRoot } from './quote-reports-workflow-by-store.model';
+} from './quote-reports-workflow-by-owner.model';
 import { FormService } from '../../../shared/services/form.service';
 import { FormField } from 'src/app/shared/models/form-field.model';
+
 @Injectable({
   providedIn: 'root',
 })
-export class QuoteReportsWorkflowByStoreService {
-  gridData: StoreSummaryRoot | undefined;
+export class QuoteReportWorkflowByOwnerService {
+  gridData: OwnerSummaryRoot | undefined;
   gridDefinition: DataDefinition | undefined;
 
+  filterConfig: FormField[] | undefined;
+  filterData: QuoteReportsFilter | undefined;
   //need to remove hardcoding
   reportFilters: QuoteReportsFilter = {
     year: 2021,
@@ -31,10 +33,6 @@ export class QuoteReportsWorkflowByStoreService {
     branch: 'All Branches',
     owner: 'All Owners',
   };
-
-  filterConfig: FormField[] | undefined;
-  filterData: QuoteReportsFilter | undefined;
-
   constructor(
     private http: HttpClient,
     private dcfService: DcfService,
@@ -53,19 +51,20 @@ export class QuoteReportsWorkflowByStoreService {
       division: '%',
       storeNumber: '%',
     };
+
     const dcfParams: DCFQueryParams = { componentId: 3039 };
 
     return new Observable<boolean>((observer: Observer<boolean>) => {
       forkJoin([
-        this.getQuoteReportWorkflowByStore(quoteReportWorkflowParams),
+        this.getQuoteReportWorkflowByOwner(quoteReportWorkflowParams),
         this.dcfService.getDcfList(dcfParams),
-        this.formServie.getConfig('saqWorkflowByBranch'),
+        this.formServie.getConfig('saqWorkflowByOwner'),
         this.getFilterData(),
       ])
         .pipe(take(1))
         .subscribe(
           ([gridData, gridDefinition, formConfiguration]: [
-            StoreSummaryRoot,
+            OwnerSummaryRoot,
             DataDefinition,
             any[],
             boolean
@@ -80,11 +79,11 @@ export class QuoteReportsWorkflowByStoreService {
     });
   }
 
-  getQuoteReportWorkflowByStore(
+  getQuoteReportWorkflowByOwner(
     data: QuoteReportWorkflowParams
-  ): Observable<StoreSummaryRoot> {
-    return this.http.post<StoreSummaryRoot>(
-      environment.QUOTE_REPORT_STORE_EP,
+  ): Observable<OwnerSummaryRoot> {
+    return this.http.post<OwnerSummaryRoot>(
+      environment.QUOTE_REPORT_OWNER_EP,
       data
     );
   }

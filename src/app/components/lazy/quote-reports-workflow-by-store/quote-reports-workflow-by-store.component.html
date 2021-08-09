@@ -1,7 +1,7 @@
 <app-shared-filter
   [compConfig]="sharedFilterConfig?.compConfig"
   [inputChange]="sharedFilterConfig?.inputChange"
-  (compOutput)="sharedFilterConfig?.compOutput($event)"
+  (compOutput)="handleSharedFormsOutputChange($event)"
 >
 </app-shared-filter>
 <app-atom-grid [gridData]="gridData" [gridState$]="listData$"></app-atom-grid>

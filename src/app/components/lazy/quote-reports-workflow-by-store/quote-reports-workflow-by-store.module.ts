@@ -9,7 +9,6 @@ import { QuoteReportsWorkflowByStoreResolver } from './quote-reports-workflow-by
 import { RouterModule, Routes } from '@angular/router';
 import { QuoteReportsWorkflowByStoreService } from './quote-reports-workflow-by-store.service';
 
-
 const routes: Routes = [
   {
     path: '**',
@@ -21,18 +20,16 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    QuoteReportsWorkflowByStoreComponent
-  ],
+  declarations: [QuoteReportsWorkflowByStoreComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedComponentsLibModule,
-    SharedFormActionsModule
+    SharedFormActionsModule,
   ],
   providers: [
     QuoteReportsWorkflowByStoreService,
-    QuoteReportsWorkflowByStoreResolver
-  ]
+    QuoteReportsWorkflowByStoreResolver,
+  ],
 })
-export class QuoteReportsWorkflowByStoreModule { }
+export class QuoteReportsWorkflowByStoreModule {}

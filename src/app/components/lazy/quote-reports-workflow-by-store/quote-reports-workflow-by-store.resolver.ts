@@ -8,10 +8,10 @@ import { QuoteReportsWorkflowByStoreService } from './quote-reports-workflow-by-
 @Injectable({
   providedIn: 'root',
 })
-export class QuoteReportsWorkflowByStoreResolver
-  implements Resolve<boolean>
-{
-  constructor(private quoteReportWorkflowService: QuoteReportsWorkflowByStoreService) { }
+export class QuoteReportsWorkflowByStoreResolver implements Resolve<boolean> {
+  constructor(
+    private quoteReportWorkflowService: QuoteReportsWorkflowByStoreService
+  ) {}
 
   resolve(): Observable<boolean> {
     return this.quoteReportWorkflowService.resolve().pipe(take(1));
