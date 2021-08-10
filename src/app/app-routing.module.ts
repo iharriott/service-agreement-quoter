@@ -10,6 +10,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'quote-workflow',
+    loadChildren: () =>
+      import(
+        './components/lazy/quote-workflow/quote-workflow.module'
+      ).then((m) => m.QuoteWorkflowModule),
+  },
+  {
     path: 'work-flow-by-owner',
     loadChildren: () =>
       import(
@@ -32,4 +39,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

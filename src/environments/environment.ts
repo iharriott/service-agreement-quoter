@@ -14,6 +14,8 @@ export const environment = {
     BRIDGE_HOST_URL + 'saq/report/workflow/summary/owner/list',
   QUOTE_REPORT_STORE_EP:
     BRIDGE_HOST_URL + 'saq/report/workflow/summary/store/list',
+  QUOTE_WORKFLOW_EP:
+    BRIDGE_HOST_URL + 'saq/report/workflow/summary/list',
   FORM_CONFIG_EP: CL1_1 + 'config/form/',
 };
 
