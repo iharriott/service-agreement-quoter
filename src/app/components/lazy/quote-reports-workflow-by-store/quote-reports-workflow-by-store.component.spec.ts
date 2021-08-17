@@ -8,9 +8,8 @@ describe('QuoteReportsWorkflowByStoreComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QuoteReportsWorkflowByStoreComponent ]
-    })
-    .compileComponents();
+      declarations: [QuoteReportsWorkflowByStoreComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

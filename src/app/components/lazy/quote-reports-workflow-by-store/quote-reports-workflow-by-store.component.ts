@@ -9,9 +9,15 @@ import {
   StoreSummaryRoot,
 } from './quote-reports-workflow-by-store.model';
 import { QuoteReportsWorkflowByStoreService } from './quote-reports-workflow-by-store.service';
-import { QuoteReportsFilter } from '../quote-reports-workflow-by-owner/quote-reports-workflow-by-owner.model';
-import { FormField } from 'src/app/shared/models/form-field.model';
-import { FormService } from 'src/app/shared/services/form.service';
+import {
+  QuoteReportsFilter,
+  QuoteReportWorkflowParams,
+} from '../quote-reports-workflow-by-owner/quote-reports-workflow-by-owner.model';
+import { FormField } from '../../../shared/models/form-field.model';
+import { FormService } from '../../../shared/services/form.service';
+import { Router } from '@angular/router';
+import { Emitters } from '../quote-reports-workflow-by-owner/emitters/emitters';
+import { WorkflowReportFilterService } from '../../../shared/services/workflow-report-filter.service';
 
 @Component({
   selector: 'app-quote-reports-workflow-by-store',
@@ -36,7 +42,9 @@ export class QuoteReportsWorkflowByStoreComponent implements OnInit {
 
   constructor(
     private quoteReportWorkflowByStoreService: QuoteReportsWorkflowByStoreService,
-    private formService: FormService
+    private formService: FormService,
+    private router: Router,
+    private workflowReportFilterService: WorkflowReportFilterService
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +55,8 @@ export class QuoteReportsWorkflowByStoreComponent implements OnInit {
 
     this.sharedFilterConfig = this.formService.notifySharedFormsComponent(
       formData,
-      formConfig
+      formConfig,
+      this.sharedFilterConfig
     );
     this.gridData = this.quoteReportWorkflowByStoreService.gridDefinition;
     this.tableData = this.quoteReportWorkflowByStoreService.gridData;
@@ -58,8 +67,29 @@ export class QuoteReportsWorkflowByStoreComponent implements OnInit {
     });
   }
 
-  //TODO
   handleSharedFormsOutputChange(event: SharedFormActionsOutputConfig): void {
-    console.log(`form filter output in store ${JSON.stringify(event)}`);
+    const reportParams: QuoteReportWorkflowParams =
+      this.workflowReportFilterService.getReportFilterParams(event);
+
+    const reportFilter: QuoteReportsFilter =
+      this.workflowReportFilterService.getReportFilter(event);
+
+    Emitters.reportParams = reportParams;
+    Emitters.reportFilter = reportFilter;
+    this.quoteReportWorkflowByStoreService
+      .getQuoteReportWorkflowByStore(reportParams)
+      .subscribe((data) => {
+        this.tableData = data;
+
+        this.listData$.next({
+          isLoaded: true,
+          payload: this.tableData?.storeSummary,
+        });
+      });
+  }
+
+  handleRowClicked(event: any): void {
+    Emitters.reportFilter.branch = event.payload.storeNumber;
+    this.router.navigate(['quote-workflow']);
   }
 }

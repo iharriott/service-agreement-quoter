@@ -5,13 +5,9 @@ import { take } from 'rxjs/operators';
 
 import { QuoteWorkflowService } from './quote-workflow.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class QuoteWorkflowResolver implements Resolve<boolean> {
-  constructor(
-    private quoteWorkflowService: QuoteWorkflowService
-  ) { }
+  constructor(private quoteWorkflowService: QuoteWorkflowService) {}
   resolve(): Observable<boolean> {
     return this.quoteWorkflowService.resolve().pipe(take(1));
   }

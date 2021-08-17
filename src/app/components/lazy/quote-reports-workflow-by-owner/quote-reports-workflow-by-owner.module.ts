@@ -6,8 +6,9 @@ import {
   SharedComponentsLibModule,
   SharedFormActionsModule,
 } from 'shared-components-lib';
-import { QuoteReportWorkflowByOwnerService } from './quote-report-workflow-by-owner.service';
+import { QuoteReportsWorkflowByOwnerService } from './quote-reports-workflow-by-owner.service';
 import { QuoteReportsWorkflowByOwnerResolver } from './quote-reports-workflow-by-owner-resolver';
+import { WorkflowReportFilterService } from '../../../shared/services/workflow-report-filter.service';
 
 const routes: Routes = [
   {
@@ -28,8 +29,9 @@ const routes: Routes = [
     SharedFormActionsModule,
   ],
   providers: [
-    QuoteReportWorkflowByOwnerService,
+    QuoteReportsWorkflowByOwnerService,
     QuoteReportsWorkflowByOwnerResolver,
+    WorkflowReportFilterService,
   ],
 })
 export class QuoteReportsWorkflowByOwnerModule {}

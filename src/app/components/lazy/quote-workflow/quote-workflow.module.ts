@@ -8,6 +8,7 @@ import { QuoteWorkflowComponent } from './quote-workflow.component';
 import { QuoteWorkflowResolver } from './quote-workflow.resolver';
 import { RouterModule, Routes } from '@angular/router';
 import { QuoteWorkflowService } from './quote-workflow.service';
+import { WorkflowReportFilterService } from '../../../shared/services/workflow-report-filter.service';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
   providers: [
     QuoteWorkflowService,
     QuoteWorkflowResolver,
+    WorkflowReportFilterService,
   ],
 })
-export class QuoteWorkflowModule { }
+export class QuoteWorkflowModule {}

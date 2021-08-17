@@ -5,7 +5,7 @@ import {
   SharedComponentsLibModule,
   SharedFormActionsModule,
 } from 'shared-components-lib';
-import { SharedModule } from '../../../shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { QuoteListService } from './quote-list.service';
 import { QuoteListResolver } from './quote-list.resolver';
 import { RouterModule, Routes } from '@angular/router';

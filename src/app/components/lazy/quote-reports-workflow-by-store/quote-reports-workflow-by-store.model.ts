@@ -1,8 +1,5 @@
 import { Subject } from 'rxjs';
-import {
-  SharedFormActionsInputConfig,
-  SharedFormActionsOutputConfig,
-} from 'shared-components-lib/lib/shared-form/shared-form-actions/shared-form-actions.model';
+import { SharedFormActionsInputConfig } from 'shared-components-lib/lib/shared-form/shared-form-actions/shared-form-actions.model';
 
 export interface StoreSummary {
   storeNumber: string;
@@ -32,5 +29,4 @@ export interface StoreSummaryRoot {
 export interface SharedFormsConfig {
   compConfig: SharedFormActionsInputConfig;
   inputChange: Subject<SharedFormActionsInputConfig>;
-  compOutput: (event: SharedFormActionsOutputConfig) => void;
 }

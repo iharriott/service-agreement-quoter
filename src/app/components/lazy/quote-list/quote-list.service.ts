@@ -7,14 +7,14 @@ import {
   QuotesGetQuotesListForViewParameters,
 } from './quote-list.model';
 import { forkJoin, Observable, Observer } from 'rxjs';
-import { environment } from '../../../../environments/environment';
-import { DCFQueryParams } from '../../../shared/models/dcf.model';
+import { environment } from 'src/environments/environment';
+import { DCFQueryParams } from 'src/app/shared/models/dcf.model';
 import { DataDefinition } from 'shared-components-lib/lib/shared-grid/atom-grid/atom-grid-data.interface';
-import { DcfService } from '../../../shared/services/dcf-services/dcf.service';
+import { DcfService } from 'src/app/shared/services/dcf-services/dcf.service';
 import { take } from 'rxjs/operators';
 import { FormService } from 'src/app/shared/services/form.service';
 import { FieldConfig } from 'shared-components-lib/lib/shared-form/shared/others/model/field.model';
-import { FormField, getConfig } from '../../../shared/models/form-field.model';
+import { FormField, getConfig } from 'src/app/shared/models/form-field.model';
 
 @Injectable()
 export class QuoteListService {

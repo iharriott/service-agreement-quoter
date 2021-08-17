@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from '../../../shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ErrorComponent } from './error.component';
 
 const errorRoutes: Routes = [

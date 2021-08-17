@@ -10,11 +10,18 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'quote-overview/:quoteId',
+    loadChildren: () =>
+      import('./components/lazy/quote-overview/quote-overview.module').then(
+        (m) => m.QuoteOverviewModule
+      ),
+  },
+  {
     path: 'quote-workflow',
     loadChildren: () =>
-      import(
-        './components/lazy/quote-workflow/quote-workflow.module'
-      ).then((m) => m.QuoteWorkflowModule),
+      import('./components/lazy/quote-workflow/quote-workflow.module').then(
+        (m) => m.QuoteWorkflowModule
+      ),
   },
   {
     path: 'work-flow-by-owner',
@@ -30,6 +37,13 @@ const routes: Routes = [
         './components/lazy/quote-reports-workflow-by-store/quote-reports-workflow-by-store.module'
       ).then((m) => m.QuoteReportsWorkflowByStoreModule),
   },
+  {
+    path: 'personalize',
+    loadChildren: () =>
+      import('./components/lazy/personalize/personalize.module').then(
+        (m) => m.PersonalizeModule
+      ),
+  },
   { path: 'error', redirectTo: 'error', pathMatch: 'full' },
   { path: '', redirectTo: 'quote-list', pathMatch: 'full' },
   { path: '**', redirectTo: 'error', pathMatch: 'full' },
@@ -39,4 +53,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

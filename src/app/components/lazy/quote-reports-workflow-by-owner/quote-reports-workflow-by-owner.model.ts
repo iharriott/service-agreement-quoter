@@ -1,9 +1,6 @@
 import { Subject } from 'rxjs';
 import { DataDefinition } from 'shared-components-lib/lib/shared-grid/atom-grid/atom-grid-data.interface';
-import {
-  SharedFormActionsInputConfig,
-  SharedFormActionsOutputConfig,
-} from 'shared-components-lib/lib/shared-form/shared-form-actions/shared-form-actions.model';
+import { SharedFormActionsInputConfig } from 'shared-components-lib/lib/shared-form/shared-form-actions/shared-form-actions.model';
 
 export interface Division {
   division: string;
@@ -76,7 +73,6 @@ export interface QuoteReportWorkflowParams {
 export interface SharedFormsConfig {
   compConfig: SharedFormActionsInputConfig;
   inputChange: Subject<SharedFormActionsInputConfig>;
-  compOutput: (event: SharedFormActionsOutputConfig) => void;
 }
 
 export interface QuoteReportsFilter {
@@ -84,4 +80,5 @@ export interface QuoteReportsFilter {
   month: string;
   branch: string;
   owner: string;
+  status: number;
 }

@@ -4,20 +4,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainNavComponent } from './components/lazy/main-nav/main-nav.component';
+import { AppService } from './app.service';
 import { SharedModule } from './shared/shared.module';
+import { SharedTopMenuModule } from 'shared-components-lib';
 
 @NgModule({
-  declarations: [AppComponent, MainNavComponent],
+  declarations: [AppComponent],
+  providers: [AppService],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    SharedTopMenuModule,
     SharedModule.forRoot(),
   ],
-  entryComponents: [],
-  providers: [], // include service for app initializer
   bootstrap: [AppComponent],
 })
 export class AppModule {}

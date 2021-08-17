@@ -3,17 +3,15 @@ import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { QuoteReportWorkflowByOwnerService } from './quote-report-workflow-by-owner.service';
+import { QuoteReportsWorkflowByOwnerService } from './quote-reports-workflow-by-owner.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class QuoteReportsWorkflowByOwnerResolver implements Resolve<boolean> {
   constructor(
-    private quoteReportWorkflowByOwnerService: QuoteReportWorkflowByOwnerService
+    private quoteReportsWorkflowByOwnerService: QuoteReportsWorkflowByOwnerService
   ) {}
 
   resolve(): Observable<boolean> {
-    return this.quoteReportWorkflowByOwnerService.resolve().pipe(take(1));
+    return this.quoteReportsWorkflowByOwnerService.resolve().pipe(take(1));
   }
 }

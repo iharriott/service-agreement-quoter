@@ -1,0 +1,13 @@
+mat-grid-tile {
+  background: lightblue;
+}
+
+.row-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.mat-card {
+  width: 30%;
+}

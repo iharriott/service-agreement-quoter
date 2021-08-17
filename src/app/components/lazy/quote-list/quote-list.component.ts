@@ -18,7 +18,7 @@ import {
 } from 'shared-components-lib/lib/shared-form/shared-form-actions/shared-form-actions.model';
 import { QuoteListService } from './quote-list.service';
 import { FieldConfig } from 'shared-components-lib/lib/shared-form/shared/others/model/field.model';
-import { FormField } from '../../../shared/models/form-field.model';
+import { FormField } from 'src/app/shared/models/form-field.model';
 
 @Component({
   selector: 'app-quote-list',
@@ -93,7 +93,6 @@ export class QuoteListComponent implements OnInit, OnDestroy {
     this.listData$.next({ isLoaded: false });
     this.quoteListService.filterData = event.data[0];
     this.quoteListService.getQuoteList(event.data[0]).subscribe((data) => {
-      debugger;
       this.tableData = data;
       this.listData$.next({
         isLoaded: true,

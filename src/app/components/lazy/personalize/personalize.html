@@ -1,0 +1,10 @@
+<div class='personalize-component'>
+  <app-shared-form-actions
+    *ngIf='formActionsConfig?.compConfig?.options?.isShow'
+    [compConfig]='formActionsConfig?.compConfig'
+    [inputChange]='formActionsConfig?.inputChange'
+    (compOutput)='formActionsConfig?.compOutput($event)'>
+  </app-shared-form-actions>
+</div>
+
+

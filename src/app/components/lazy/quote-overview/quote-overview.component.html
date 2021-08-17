@@ -1,0 +1,78 @@
+
+<mat-accordion *ngIf="quotesHeaderData !== null">    
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Quote Header
+            </mat-panel-title>          
+        </mat-expansion-panel-header>
+        <div class="row-container">
+            <mat-card>
+                <mat-card-title>
+                    QUOTE NO. {{quoteHeader?.quoteId}} ({{quoteHeader?.quoteStatus}})                 
+                </mat-card-title>
+                <mat-divider></mat-divider>
+                <div class="row-container">
+                    <div>
+                        <label>Owner</label>
+                    </div>
+                    <div>
+                        {{quoteHeader?.ownerFirstName}} {{quoteHeader?.ownerLastName}}
+                    </div>
+                </div>
+                <div class="row-container">
+                    <div>
+                        <label>Originator</label>
+                    </div>
+                    <div>
+                        {{quoteHeader?.creatorFirstName}} {{quoteHeader?.creatorLastName}}
+                    </div>
+                </div>
+                <div class="row-container">
+                    <div>
+                        <label>Description</label>
+                    </div>
+                    <div>
+                        {{quoteHeader?.quoteDescription}}
+                    </div>
+                </div>
+            </mat-card>
+            <mat-card>
+                <mat-card-title>
+                    {{quoteHeader?.customerName}} ({{quoteHeader?.customerNumber}})
+                </mat-card-title>
+                <mat-divider></mat-divider>
+                <div class="row-container">
+                    <div>
+                        <label>Phone</label>
+                    </div>
+                    <div>
+                        {{quoteHeader?.customerPhone}}
+                    </div>                   
+                </div>
+                <div class="row-container">
+                    <div>
+                        <label>PO No</label>
+                    </div>
+                    <div>
+                        {{quoteHeader?.purchaseOrderNumber}}
+                    </div>
+                </div>
+            </mat-card>
+            <mat-card>
+                <mat-card-title>
+                    TOTALS: REVISION {{quotesHeaderData.revisions?.length}}
+                </mat-card-title>
+                <mat-divider></mat-divider>               
+                <div class="row-container">
+                    <div>
+                        <label>Grand Total</label>
+                    </div>
+                    <div>
+                        {{quoteHeader?.quoteTotal}}
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

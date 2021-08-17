@@ -8,7 +8,6 @@ import { DCFQueryParams } from '../../../shared/models/dcf.model';
 
 import { DcfService } from '../../../shared/services/dcf-services/dcf.service';
 import { environment } from '../../../../environments/environment';
-//import { AppConfig, getConfig } from '../quote-list/mock.data';
 
 import {
   QuoteReportsFilter,
@@ -16,21 +15,15 @@ import {
 } from '../quote-reports-workflow-by-owner/quote-reports-workflow-by-owner.model';
 import { StoreSummaryRoot } from './quote-reports-workflow-by-store.model';
 import { FormService } from '../../../shared/services/form.service';
-import { FormField } from 'src/app/shared/models/form-field.model';
-@Injectable({
-  providedIn: 'root',
-})
+import { FormField } from '../../../shared/models/form-field.model';
+import { Emitters } from '../quote-reports-workflow-by-owner/emitters/emitters';
+
+@Injectable()
 export class QuoteReportsWorkflowByStoreService {
   gridData: StoreSummaryRoot | undefined;
   gridDefinition: DataDefinition | undefined;
 
-  //need to remove hardcoding
-  reportFilters: QuoteReportsFilter = {
-    year: 2021,
-    month: 'All Months',
-    branch: 'All Branches',
-    owner: 'All Owners',
-  };
+  reportFilters: QuoteReportsFilter = Emitters.reportFilter;
 
   filterConfig: FormField[] | undefined;
   filterData: QuoteReportsFilter | undefined;
@@ -38,28 +31,20 @@ export class QuoteReportsWorkflowByStoreService {
   constructor(
     private http: HttpClient,
     private dcfService: DcfService,
-    private formServie: FormService
+    private formService: FormService
   ) {}
 
   resolve(): Observable<boolean> {
-    //need to remove hardcoding
-    const quoteReportWorkflowParams: QuoteReportWorkflowParams = {
-      languageId: 1,
-      viewUserId: 2737,
-      mode: 'Edit',
-      reportYear: 2018,
-      reportMonth: 0,
-      ownerUserId: 0,
-      division: '%',
-      storeNumber: '%',
-    };
+    const quoteReportWorkflowParams: QuoteReportWorkflowParams =
+      Emitters.reportParams;
+
     const dcfParams: DCFQueryParams = { componentId: 3039 };
 
     return new Observable<boolean>((observer: Observer<boolean>) => {
       forkJoin([
         this.getQuoteReportWorkflowByStore(quoteReportWorkflowParams),
         this.dcfService.getDcfList(dcfParams),
-        this.formServie.getConfig('saqWorkflowByBranch'),
+        this.formService.getConfig('saqWorkflowByBranch'),
         this.getFilterData(),
       ])
         .pipe(take(1))
