@@ -24,6 +24,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'quote-workflow-add-events',
+    loadChildren: () =>
+      import('./components/lazy/quote-workflow-add-events/quote-workflow-add-events.module').then(
+        (m) => m.QuoteWorkflowAddEventsModule
+      ),
+  },
+  {
     path: 'work-flow-by-owner',
     loadChildren: () =>
       import(
@@ -53,4 +60,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
